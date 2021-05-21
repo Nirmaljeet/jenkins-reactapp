@@ -25,11 +25,11 @@ pipeline {
         }
         
         
-        
+
         stage('Creating Infra') {
             steps {
                 withAWS(credentials:'AWS'){
-                    sh "cd jenkins-reactapp/ && aws cloudformation update-stack --stack-name react-cluster --template-body file://ecs-template.yml --parameters ParameterKey=DesiredCount,ParameterValue=2 ParameterKey=DesiredCapacity,ParameterValue=1 --capabilities CAPABILITY_IAM --region us-east-1"
+                    sh "cd jenkins-reactapp/ && aws cloudformation update-stack --stack-name react-cluster --template-body file://ecs-template.yml --parameters ParameterKey=DesiredCount,ParameterValue=3 ParameterKey=DesiredCapacity,ParameterValue=3 --capabilities CAPABILITY_IAM --region us-east-1"
                     
                 }
             }
