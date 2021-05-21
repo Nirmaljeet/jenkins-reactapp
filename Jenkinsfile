@@ -29,7 +29,7 @@ pipeline {
         stage('Creating Infra') {
             steps {
                 withAWS(credentials:'AWS'){
-                    sh "cd jenkins-reactapp/ && aws cloudformation update-stack --stack-name react-cluster --template-body file://ecs-template.yml --parameters ParameterKey=DesiredCount,ParameterValue=3 ParameterKey=DesiredCapacity,ParameterValue=3 --capabilities CAPABILITY_IAM --region us-east-1"
+                    sh "cd jenkins-reactapp/ && aws cloudformation update-stack --stack-name react-cluster --template-body file://ecs-template.yml --parameters ParameterKey=DesiredCount,ParameterValue=2 ParameterKey=DesiredCapacity,ParameterValue=2 --capabilities CAPABILITY_IAM --region us-east-1"
                     
                 }
             }
@@ -38,7 +38,7 @@ pipeline {
         stage('Waiting for stack to complete') {
             steps {
                 withAWS(credentials:'AWS'){
-                    sh 'aws cloudformation wait stack-update-complete  --stack-name "arn:aws:cloudformation:us-east-1:196202912397:stack/react-cluster/a23b2dc0-ba41-11eb-9aba-0efa5da0ad91" --region us-east-1'
+                    sh 'aws cloudformation wait stack-update-complete  --stack-name "https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/stackinfo?stackId=arn%3Aaws%3Acloudformation%3Aus-east-1%3A196202912397%3Astack%2Freact-cluster%2Fa23b2dc0-ba41-11eb-9aba-0efa5da0ad91" --region us-east-1'
                     sh 'aws cloudformation describe-stacks --stack-name react-cluster --region us-east-1'
                 }
             }
