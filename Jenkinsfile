@@ -38,7 +38,7 @@ pipeline {
         stage('Waiting for stack to complete') {
             steps {
                 withAWS(credentials:'AWS'){
-                    sh 'aws cloudformation wait stack-update-complete  --stack-name "arn:aws:cloudformation:us-east-1:196202912397:stack/react-service/c4e9b720-ba3b-11eb-8ae8-12f4ed1177e6" --region us-east-1'
+                    sh 'aws cloudformation wait stack-update-complete  --stack-name "arn:aws:cloudformation:us-east-1:196202912397:stack/react-cluster/a23b2dc0-ba41-11eb-9aba-0efa5da0ad91" --region us-east-1'
                     sh 'aws cloudformation describe-stacks --stack-name react-cluster --region us-east-1'
                 }
             }
