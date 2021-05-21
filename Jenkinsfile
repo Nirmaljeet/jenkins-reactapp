@@ -34,6 +34,7 @@ pipeline {
                 }
             }
         }
+
         
         stage('Waiting for stack to complete') {
             steps {
